@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "promitor-scraper.fullname" . }}
+  labels:
+    app: {{ template "promitor-scraper.name" . }}
+    chart: {{ template "promitor-scraper.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "promitor-scraper.name" . }}
+    release: {{ .Release.Name }}
