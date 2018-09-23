@@ -2,18 +2,24 @@
 layout: default
 title: Promitor - An Azure Monitor scraper for Prometheus
 ---
+
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/tomkerkhove/promitor/blob/master/LICENSE)[![Build Status](https://travis-ci.com/tomkerkhove/promitor.svg?branch=master)](https://travis-ci.com/tomkerkhove/promitor) [![Docker Pulls](https://img.shields.io/docker/pulls/tomkerkhove/promitor-scraper.svg?style=flat-square)](https://hub.docker.com/r/tomkerkhove/promitor-scraper/)
 [![Docker Stars](https://img.shields.io/docker/stars/tomkerkhove/promitor-scraper.svg?style=flat-square)](https://hub.docker.com/r/tomkerkhove/promitor-scraper/)
 
 **Promitor** is an **Azure Monitor scraper for Prometheus** providing a scraping endpoint for Prometheus that provides a configured subset of Azure Monitor metrics.
 
+{:refdef: style="text-align: center;"}
+![Promitor](./media/logos/promitor.png)
+{: refdef}
+
 # Running Promitor Scraper
 Running Promitor Scraper is super easy:
 ```
-docker run -d -p 8999:80 -e PROMITOR_AUTH_APPID='<azure-ad-app-id>'   \
-                         -e PROMITOR_AUTH_APPKEY='<azure-ad-app-key>' \
-                         -v C:/Promitor/metrics-declaration.yaml:/config/metrics-declaration.yaml \ 
-                         tomkerkhove/promitor-scraper:v0.1
+docker run -d -p 8999:80 --name promitor-scraper
+                         --env PROMITOR_AUTH_APPID='<azure-ad-app-id>'   \
+                         --env PROMITOR_AUTH_APPKEY='<azure-ad-app-key>' \
+                         --volume C:/Promitor/metrics-declaration.yaml:/config/metrics-declaration.yaml \ 
+                         tomkerkhove/promitor-scraper:0.2.1
 ```
 
 Docker image is available on [Docker Hub](https://hub.docker.com/r/tomkerkhove/promitor-scraper/).

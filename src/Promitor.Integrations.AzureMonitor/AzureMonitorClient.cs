@@ -7,12 +7,11 @@ using Microsoft.Azure.Management.Monitor.Fluent;
 using Microsoft.Azure.Management.Monitor.Fluent.Models;
 using Microsoft.Azure.Management.ResourceManager.Fluent;
 using Microsoft.Azure.Management.ResourceManager.Fluent.Authentication;
+using GuardNet;
 using Promitor.Integrations.AzureMonitor.Exceptions;
 
 namespace Promitor.Integrations.AzureMonitor
 {
-    using Guard;
-
     public class AzureMonitorClient
     {
         private readonly IAzure _authenticatedAzureSubscription;
@@ -75,7 +74,7 @@ namespace Promitor.Integrations.AzureMonitor
             return requestMetricAggregate;
         }
 
-        private async Task<Metric> GetRelevantMetric(string metricName, AggregationType metricAggregation,
+        private async Task<IMetric> GetRelevantMetric(string metricName, AggregationType metricAggregation,
             string metricFilter, IMetricDefinition metricDefinition, DateTime recordDateTime)
         {
             var metricQuery = CreateMetricsQuery(metricAggregation, metricFilter, metricDefinition, recordDateTime);
@@ -91,7 +90,7 @@ namespace Promitor.Integrations.AzureMonitor
             return relevantMetric;
         }
 
-        private MetricValue GetMostRecentMetricValue(string metricName, IList<TimeSeriesElement> timeSeries,
+        private MetricValue GetMostRecentMetricValue(string metricName, IReadOnlyList<TimeSeriesElement> timeSeries,
             DateTime recordDateTime)
         {
             var timeSerie = timeSeries.FirstOrDefault(); // TODO: Can we really do this?

@@ -2,7 +2,7 @@
 using System.IO;
 using Promitor.Scraper.Host.Configuration.Model;
 using Promitor.Scraper.Host.Configuration.Providers.Interfaces;
-using Promitor.Scraper.Host.Serialization;
+using Promitor.Scraper.Host.Configuration.Serialization;
 
 namespace Promitor.Scraper.Host.Configuration.Providers
 {
@@ -10,15 +10,13 @@ namespace Promitor.Scraper.Host.Configuration.Providers
     {
         public virtual MetricsDeclaration Get()
         {
-            var rawMetricsDeclaration = GetSerializedDeclaration();
-            var input = new StringReader(rawMetricsDeclaration);
-            var deserializer = YamlSerialization.CreateDeserializer();
+            var rawMetricsDeclaration = ReadRawDeclaration();
 
-            var config = deserializer.Deserialize<MetricsDeclaration>(input);
+            var config = ConfigurationSerializer.Deserialize(rawMetricsDeclaration);
             return config;
         }
 
-        public virtual string GetSerializedDeclaration()
+        public virtual string ReadRawDeclaration()
         {
             var scrapingConfigurationPath = Environment.GetEnvironmentVariable(EnvironmentVariables.Configuration.Path);
             if (string.IsNullOrWhiteSpace(scrapingConfigurationPath))

@@ -8,19 +8,19 @@ Here is an overview of the services that are so kind to support us:
 
 - **Travis CI** is a hosted, distributed continuous integration service used to build our pull requests.
 
-![Travis CI](./media/travis-ci-black.png)
+![Travis CI](./media/logos/travis-ci-black.png)
 
 - **Renovate** saves us time and reduces risk by automating the tedious process of updating dependencies.
 
-![Renovate](./media/renovate.jpg)
+![Renovate](./media/logos/renovate.jpg)
 
 - **Visual Studio Team Services - CI/CD** allows us to build automated process for building our Docker image and pushing it to Docker Hub, create GitHub release and more without manual intervention.
 
-![Visual Studio Team Services - CI/CD](./media/vsts.png)
+![Visual Studio Team Services - CI/CD](./media/logos/vsts.png)
 
 - **Snyk** continuously monitors our documentation, application & Docker image and lets you quickly respond when new vulnerabilities are disclosed.
 
-![Snyk](./media/snyk-dark.png)
+![Snyk](./media/logos/snyk-dark.png)
 
 # GitHub Apps
 We are using the following GitHub Apps:
@@ -39,3 +39,6 @@ Here is an overview of the NuGet packages that we rely on:
 - [Prometheus.Client](https://github.com/PrometheusClientNet/Prometheus.Client) - .NET client for prometheus.io
 - [Shuttle.Core.Cron](https://github.com/Shuttle/Shuttle.Core.Cron) - Cron expression parsing
 - [YamlDotNet](https://github.com/aaubry/YamlDotNet) - .NET library for YAML
+- [Guard.NET](https://github.com/george-pancescu/Guard) - Library that facilitates runtime checks of code and allows to define preconditions and invariants within a method
+- [Bogus](https://github.com/bchavez/Bogus) - A simple and sane data generator for populating objects
+- [xUnit](https://github.com/xunit/xunit) - Free, open source, community-focused unit testing tool for the .NET

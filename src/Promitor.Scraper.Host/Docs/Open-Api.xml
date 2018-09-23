@@ -39,7 +39,7 @@
                 Gets the configured metrics declaration
             </summary>
         </member>
-        <member name="M:Promitor.Scraper.Host.Configuration.Providers.Interfaces.IMetricsDeclarationProvider.GetSerializedDeclaration">
+        <member name="M:Promitor.Scraper.Host.Configuration.Providers.Interfaces.IMetricsDeclarationProvider.ReadRawDeclaration">
             <summary>
                 Gets the serialized metrics declaration
             </summary>
@@ -56,12 +56,13 @@
             </summary>
             <param name="rawCronSchedule">Raw Cron schedule to use</param>
         </member>
-        <member name="M:Promitor.Scraper.Host.Scraping.Factories.MetricScraperFactory.CreateScraper(Promitor.Scraper.Host.Model.Configuration.AzureMetadata,Promitor.Scraper.Host.Configuration.Model.ResourceType,Promitor.Core.Telemetry.Interfaces.IExceptionTracker)">
+        <member name="M:Promitor.Scraper.Host.Scraping.Factories.MetricScraperFactory.CreateScraper(Promitor.Scraper.Host.Configuration.Model.AzureMetadata,Promitor.Scraper.Host.Configuration.Model.ResourceType,Promitor.Core.Telemetry.Interfaces.IExceptionTracker)">
             <summary>
                 Creates a scraper that is capable of scraping a specific resource type
             </summary>
             <param name="azureMetadata">Metadata concerning the Azure resources</param>
             <param name="metricDefinitionResourceType">Resource type to scrape</param>
+            <param name="exceptionTracker">Tracker used to log exceptions</param>
         </member>
         <member name="M:Promitor.Scraper.Host.Scraping.ScrapeEndpoint.GetBasePath(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
@@ -74,7 +75,7 @@
             </summary>
             <typeparam name="TMetricDefinition">Type of metric definition that is being used</typeparam>
         </member>
-        <member name="M:Promitor.Scraper.Host.Scraping.Scraper`1.#ctor(Promitor.Scraper.Host.Model.Configuration.AzureMetadata,Promitor.Scraper.Host.Configuration.Model.AzureCredentials,Promitor.Core.Telemetry.Interfaces.IExceptionTracker)">
+        <member name="M:Promitor.Scraper.Host.Scraping.Scraper`1.#ctor(Promitor.Scraper.Host.Configuration.Model.AzureMetadata,Promitor.Scraper.Host.Configuration.Model.AzureCredentials,Promitor.Core.Telemetry.Interfaces.IExceptionTracker)">
             <summary>
                 Constructor
             </summary>
@@ -98,6 +99,13 @@
             </summary>
             <param name="azureMonitorClient">Client to query Azure Monitor</param>
             <param name="metricDefinition">Definition of the metric to scrape</param>
+        </member>
+        <member name="M:Promitor.Scraper.Host.Validation.MetricDefinitions.Interfaces.IMetricValidator`1.Validate(`0)">
+            <summary>
+                Validates a specific metric definition
+            </summary>
+            <param name="metricDefinition">Metric definition to validate</param>
+            <returns>List of validation errors</returns>
         </member>
         <member name="M:Microsoft.AspNetCore.Builder.IApplicationBuilderExtensions.UseOpenApiUi(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
